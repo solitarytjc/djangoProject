@@ -42,14 +42,42 @@ const movie_imformation = ref({
   genre: '2',
   country: '3',
 })
+
+import {reactive} from "vue";
+import API from "./assets/axiosInstance";
+export default {
+  name: 'About',
+  setup(){
+    const  testData = reactive({
+      list:[]
+    });
+
+    const  getData = function (){
+      API({
+        url:'/test',
+        method:'get'
+      }).then((res)=>{
+        alert('success!');
+        testData.list = res.data.datalist;
+      });
+    }
+    return{
+      testData,
+      getData,
+    }
+  }
+}
+
 </script>
 
-<script>
-
-</script>
 
 <template>
-  <el-row v-if="true">
+  <div class="about">
+    <h1>This is an about page</h1>
+    <button @click="getData()">test axios 请求数据</button>
+    <p>这是请求到的数据{{testData.list}}</p>
+  </div>
+  <el-row v-if="false">
     <el-container>
       <!--头部-->
       <el-header>

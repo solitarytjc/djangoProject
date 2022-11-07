@@ -12,3 +12,11 @@ export default defineConfig({
     }
   }
 })
+
+
+module.exports = {
+    lintOnSave: false
+}
+
+
+
